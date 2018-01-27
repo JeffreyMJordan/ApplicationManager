@@ -1,0 +1,1 @@
+json.extract! application, :id, :first_name, :last_name, :email, :zip, :user_id, :approved

@@ -1,0 +1,1 @@
+json.extract! test, :id, :text, :application_id

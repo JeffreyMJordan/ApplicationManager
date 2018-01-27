@@ -1,0 +1,81 @@
+The application needs the following features 
+
+1) Applicants can fill out an application form
+  a) The application form can collect their first name, last name, email address, and zip code
+2) Applicants are asked to submit a coding test after applying (Don’t worry about creating an actual test. A textbox with a submit button is fine.)
+3) An administrator can view all submitted applications
+  a) For each applicant, admins should be able to see their basic information as well their coding test, if they have submitted one
+4) Administrators can accept/reject an applicant if and only if they have submitted a coding test
+
+They said to not worry about authentication or permissions, but I don't see how I'd have a way around that 
+
+ 
+
+How do I structure applications? 
+
+DATABASE MODELS
+  I could just make the user class have a username, email, and password
+  And then make a separate applications model? 
+  This application model would have firstname, lastname, email, and zip code 
+    But would also need coding test submission
+    This can just be a text field that takes information from a textbox
+    And I only want the admins to be able to approve/not approve their applications if they have it 
+    Also probably need an accepted boolean 
+      This needs to be 3 valued 
+      Actually, I can just allow null here 
+
+  Or maybe I need an actual coding test class 
+    - Then I can just associate it with each application 
+    - This is probably the better choice, because it will allow for more maintanability (I assume they'll need to score the tests down the line)
+
+    
+  I'm probably going to need to define seeds 
+  How do people become admins then? 
+
+  Current tables 
+  - USERS 
+  - APPLICATIONS 
+  - CODING_TESTS 
+
+
+FRONTEND 
+  I think I'm gonna do a React/Redux frontend just for practice 
+  So I'll have the routes defined in the API namespace 
+  And then this will function as a single-page application 
+  What components will I need? 
+    - Probably some kind of header 
+    - Session form 
+    - Coding test form
+    - Applications index form 
+      -- Have the rendering of this change depending on when they've submitted their coding test 
+  
+  How do people create admins? 
+    Ummm uhhh
+    I think I'll have the admins, then let other people worry about approving them 
+    I think I'll just seed a sample admin, then have them send email links 
+    How do I handle master admin? 
+    Ummm uhhh this part is kinda hard 
+
+  
+So how do I do the admin logic?
+  If a user is an admin, I could let them access different routes? 
+  I could also render different buttons and stuff depending on if they're an admin 
+  Yeah, that's how ima do it 
+  I should probably have an admin panel or something that only shows up for admins 
+  Lemme do that now
+  So I should make a sign-up page if someone isn't logged in 
+  I should also make a different page is someone is logged in 
+  I should also have a different page for the admins...
+  How do I control the logic for this? 
+
+  I have three different landing pages I want displayed 
+    - Logged in student 
+    - Logged in admin 
+    - Not logged in 
+
+  Maybe I could have a master component, that returns one of three other components depending on the status? 
+  Yeah, I like that 
+  What do I call this? 
+    Umm... Uhhh... 
+    Controll logic? 
+    Landing Page 
